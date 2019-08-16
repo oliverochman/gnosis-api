@@ -1,9 +1,9 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe University, type: :model do
+RSpec.describe User, type: :model do
   it 'should have valid Factory' do
-    expect(FactoryBot.create(:university)).to be_valid
+    expect(FactoryBot.create(:user)).to be_valid
   end
 
   describe 'Database table' do

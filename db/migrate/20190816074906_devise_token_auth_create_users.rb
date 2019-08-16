@@ -1,7 +1,7 @@
-class DeviseTokenAuthCreateUniversities < ActiveRecord::Migration[5.2]
+class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
   def change
     
-    create_table(:universities) do |t|
+    create_table(:users) do |t|
       ## Required
       t.string :provider, :null => false, :default => "email"
       t.string :uid, :null => false, :default => ""
@@ -35,15 +35,15 @@ class DeviseTokenAuthCreateUniversities < ActiveRecord::Migration[5.2]
       t.string :email
 
       ## Tokens
-      t.text :tokens
+      t.json :tokens
 
       t.timestamps
     end
 
-    add_index :universities, :email,                unique: true
-    add_index :universities, [:uid, :provider],     unique: true
-    add_index :universities, :reset_password_token, unique: true
-    add_index :universities, :confirmation_token,   unique: true
-    # add_index :universities, :unlock_token,       unique: true
+    add_index :users, :email,                unique: true
+    add_index :users, [:uid, :provider],     unique: true
+    add_index :users, :reset_password_token, unique: true
+    add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,       unique: true
   end
 end

@@ -1,16 +1,16 @@
 RSpec.describe 'Sessions', type: :request do
-  let(:university) { FactoryBot.create(:university) }
+  let(:user) { FactoryBot.create(:user) }
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
   describe 'POST /api/v0/auth/sign_in' do
     it 'valid credentials returns user' do
-      post '/api/v0/auth/sign_in', params: { email: university.email,
-                                             password: university.password
+      post '/api/v0/auth/sign_in', params: { email: user.email,
+                                             password: user.password
                                           }, headers: headers
 
       expected_response = {
         'data' => {
-          'id' => university.id, 'uid' => university.email, 'email' => university.email,
+          'id' => user.id, 'uid' => user.email, 'email' => user.email,
           'provider' => 'email', 'name' => nil, 'nickname' => nil,
           'image' => nil, 'allow_password_change' => false
         }    
@@ -20,7 +20,7 @@ RSpec.describe 'Sessions', type: :request do
     end
 
     it 'invalid password returns error message' do
-      post '/api/v0/auth/sign_in', params: { email: university.email,
+      post '/api/v0/auth/sign_in', params: { email: user.email,
                                              password: 'wrong_password'
                                           }, headers: headers
 
@@ -32,7 +32,7 @@ RSpec.describe 'Sessions', type: :request do
 
     it 'invalid email returns error message' do
       post '/api/v0/auth/sign_in', params: { email: 'wrong@email.com',
-                                             password: university.password
+                                             password: user.password
                                           }, headers: headers
 
       expect(response_json['errors'])

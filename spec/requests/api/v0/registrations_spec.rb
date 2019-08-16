@@ -1,4 +1,4 @@
-RSpec.describe 'University Registration', type: :request do
+RSpec.describe 'User Registration', type: :request do
   let(:header) { { HTTP_ACCEPT: 'application/json' } }
 
   context 'with valid credentials' do
@@ -35,7 +35,7 @@ RSpec.describe 'University Registration', type: :request do
     end
 
     it 'an already registered email' do
-      FactoryBot.create(:university, email: 'example@craftacademy.se',
+      FactoryBot.create(:user, email: 'example@craftacademy.se',
                                password: 'password',
                                password_confirmation: 'password')
 
