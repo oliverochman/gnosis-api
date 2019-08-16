@@ -4,8 +4,8 @@ RSpec.describe 'User Registration', type: :request do
   context 'with valid credentials' do
     it 'returns a university and token' do
       post '/api/v0/auth', params: { email: 'example@craftacademy.se',
-                                     password: 'password',
-                                     password_confirmation: 'password'
+                                      password: 'password',
+                                      password_confirmation: 'password'
                                   }, headers: headers
 
       expect(response_json['status']).to eq 'success'
@@ -16,8 +16,8 @@ RSpec.describe 'User Registration', type: :request do
   context 'returns an error message when user submits' do
     it 'non-matching password confirmation' do
       post '/api/v0/auth', params: { email: 'example@craftacademy.se',
-                                     password: 'password',
-                                     password_confirmation: 'wrong_password'
+                                      password: 'password',
+                                      password_confirmation: 'wrong_password'
                                   }, headers: headers
 
       expect(response_json['errors']['password_confirmation']).to eq ["doesn't match Password"]
@@ -26,8 +26,8 @@ RSpec.describe 'User Registration', type: :request do
 
     it 'an invalid email address' do
       post '/api/v0/auth', params: { email: 'example@craft',
-                                     password: 'password',
-                                     password_confirmation: 'password'
+                                      password: 'password',
+                                      password_confirmation: 'password'
                                   }, headers: headers
 
       expect(response_json['errors']['email']).to eq ['is not an email']
@@ -36,12 +36,12 @@ RSpec.describe 'User Registration', type: :request do
 
     it 'an already registered email' do
       FactoryBot.create(:user, email: 'example@craftacademy.se',
-                               password: 'password',
-                               password_confirmation: 'password')
+                                password: 'password',
+                                password_confirmation: 'password')
 
       post '/api/v0/auth', params: { email: 'example@craftacademy.se',
-                                     password: 'password',
-                                     password_confirmation: 'password'
+                                      password: 'password',
+                                      password_confirmation: 'password'
                                   }, headers: headers
 
       expect(response_json['errors']['email']).to eq ['has already been taken']
@@ -49,3 +49,4 @@ RSpec.describe 'User Registration', type: :request do
     end
   end
 end
+
