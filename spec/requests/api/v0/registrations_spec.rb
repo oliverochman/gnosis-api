@@ -2,14 +2,19 @@ RSpec.describe 'User Registration', type: :request do
   let(:header) { { HTTP_ACCEPT: 'application/json' } }
 
   context 'with valid credentials' do
-    it 'returns a university and token' do
+    it 'returns a user info and 5 registartion keys' do
       post '/api/v0/auth', params: { email: 'example@craftacademy.se',
                                       password: 'password',
                                       password_confirmation: 'password'
                                   }, headers: headers
 
+                                  
+                                  binding.pry
+                                  
+
       expect(response_json['status']).to eq 'success'
       expect(response.status).to eq 200
+      expect(response_json['data']['registration_keys'].count).to eq 5
     end
   end
 

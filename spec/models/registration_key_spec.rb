@@ -3,11 +3,7 @@ require 'rails_helper'
 RSpec.describe RegistrationKey, type: :model do
   describe 'Database table' do
     it { is_expected.to have_db_column :combination }
-	end 
-
-  describe 'Validations' do
-    it { is_expected.to validate_presence_of :combination }  
-  end
+	end
 
   describe 'Association' do
     it { is_expected.to belong_to :user }
