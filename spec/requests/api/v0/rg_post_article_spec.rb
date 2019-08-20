@@ -11,7 +11,7 @@ RSpec.describe Api::V0::ArticlesController, type: :request do
         article: {
           title: 'Test article',
           body: 'Lorum lorum lorum',
-          author: rg_user
+          author: rg_user.name
         }
       }, headers: headers
     end
