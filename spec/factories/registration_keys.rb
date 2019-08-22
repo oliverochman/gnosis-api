@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :registration_key do
     user
-    combination { 'Mystring' }
+    combination { '123456789123456789123456333' }
   end
 end

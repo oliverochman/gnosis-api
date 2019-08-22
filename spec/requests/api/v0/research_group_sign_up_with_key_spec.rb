@@ -1,6 +1,7 @@
 RSpec.describe 'Registration', type: :request do
   let(:header) { { HTTP_ACCEPT: 'application/json' } }
   let(:registration_key) { 'o7A8pJcuvzhv7fih9Paak3nt' }
+  FactoryBot.create(:registration_key)
 
   describe 'of User with Research Group role with valid Registration Key' do
     before 'post new User info' do
@@ -12,6 +13,7 @@ RSpec.describe 'Registration', type: :request do
                                     sign_up_registration_key: registration_key },
                                     headers: headers                             
     end
+
 
     it 'returns a 200 response if post request was successful' do
       expect(response.status).to eq 200
