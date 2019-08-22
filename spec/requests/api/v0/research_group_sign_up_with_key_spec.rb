@@ -10,7 +10,7 @@ RSpec.describe 'Registration', type: :request do
                                     password: 'password',
                                     password_confirmation: 'password',
                                     sign_up_registration_key: registration_key },
-                                    headers: headers
+                                    headers: headers                             
     end
 
     it 'returns a 200 response if post request was successful' do
@@ -23,7 +23,7 @@ RSpec.describe 'Registration', type: :request do
     end
 
     it 'verifies that created user have a Registration key' do
-      sign_up_registration_key = User.last.registration_key
+      sign_up_registration_key = User.last.sign_up_registration_key
       expect(sign_up_registration_key).to eq registration_key
     end
 

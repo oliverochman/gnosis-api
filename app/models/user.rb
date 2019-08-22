@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :registration_keys
 
-  validates :sign_up_registration_key, presence: true
+  #validates :sign_up_registration_key, presence: true
 
   private 
 
