@@ -6,27 +6,27 @@ RSpec.describe 'Registration', type: :request do
 
   describe 'of User with Research Group role with valid Registration Key' do
     
-    before 'post new User info' do
+    before 'post new User info' do      
       post '/api/v0/auth', params: { email: 'example@craftacademy.se',
                                     name: 'Research Group Alpha',
                                     role: 'research_group',
                                     password: 'password',
                                     password_confirmation: 'password',
-                                    sign_up_registration_key: reg_key.combination },
+                                    registration_key: reg_key.combination },
                                     headers: headers                             
     end
 
 
-    it 'returns a 200 response if post request was successful' do
+    it 'returns a 200 response if post request was successful' do      
       expect(response.status).to eq 200
     end
 
     it 'verifies that User with Research Group role is created' do
-      expect(response_json[:name]).to eq 'Research Group Alpha'
+      expect(response_json["data"]["name"]).to eq 'Research Group Alpha'
     end
 
     it 'verifies that created user have a Registration key' do
-      expect(response_json[:university_id]).to eq reg_key.user_id
+      expect(response_json["data"]["university_id"]).to eq reg_key.user_id
     end
 
   end
@@ -38,7 +38,7 @@ RSpec.describe 'Registration', type: :request do
                                      role: 'research_group',
                                      password: 'password',
                                      password_confirmation: 'password',
-                                     sign_up_registration_key: nil },
+                                     registration_key: nil },
                                      headers: headers
     end
 
@@ -46,8 +46,8 @@ RSpec.describe 'Registration', type: :request do
       expect(response.status).to eq 422
     end
 
-    it '' do
-      expect(response_json[:error]).to eq 'Need a registration key'
+    it '' do      
+      expect(response_json["errors"]).to eq 'Need a registration key'
     end
 
   end
@@ -64,11 +64,11 @@ RSpec.describe 'Registration', type: :request do
     end
 
     it 'returns a 422 response, save successfully attempted but nothing saved' do
-      expect(response.status).to eq 244
+      expect(response.status).to eq 422
     end
 
     it '' do
-      expect(response_json[:error]).to eq 'Invalid registartion key'
+      expect(response_json["errors"]).to eq 'Invalid registration key'
     end
 
   end

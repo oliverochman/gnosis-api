@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :registration_keys
 
+  has_many :research_groups, class_name: "User", foreign_key: "university_id"
+  
+  belongs_to :university, class_name: "User", optional: true
+
   # validates :sign_up_registration_key, presence: true, length: {minimum: 24}
 
   private 
