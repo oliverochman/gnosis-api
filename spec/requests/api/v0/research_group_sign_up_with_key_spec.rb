@@ -9,7 +9,7 @@ RSpec.describe 'Registration', type: :request do
                                     role: 'research_group',
                                     password: 'password',
                                     password_confirmation: 'password',
-                                    registration_key: registration_key },
+                                    sign_up_registration_key: registration_key },
                                     headers: headers
     end
 
@@ -36,7 +36,7 @@ RSpec.describe 'Registration', type: :request do
                                      role: 'research_group',
                                      password: 'password',
                                      password_confirmation: 'password',
-                                     registration_key: nil },
+                                     sign_up_registration_key: nil },
                                      headers: headers
     end
 
