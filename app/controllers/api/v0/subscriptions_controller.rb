@@ -3,7 +3,7 @@ class Api::V0::SubscriptionsController < ApplicationController
 
   def index
     subscribedUni = User.find_by(uid: params[:uid])
-    reg_keys = RegistrationKey.find_by(user_id: subscribedUni.id)
+    reg_keys = RegistrationKey.where(user_id: subscribedUni.id)
     render json: reg_keys
   end
 

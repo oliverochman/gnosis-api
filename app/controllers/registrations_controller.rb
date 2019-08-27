@@ -58,6 +58,7 @@ class RegistrationsController < ::DeviseTokenAuth::RegistrationsController
         @resource.save!
         update_auth_header
       end
+
       
     else
       clean_up_passwords @resource

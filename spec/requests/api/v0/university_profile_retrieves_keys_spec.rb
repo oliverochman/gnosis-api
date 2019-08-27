@@ -5,8 +5,8 @@ RSpec.describe 'University Profile Retrieves Reg Keys', type: :request do
 
   describe 'Reg Keys are returned for subscribed user' do
     before do
-      get '/api/v0/subscriptions', headers: headers, params: { uid: headers["uid"] }
       5.times { RegistrationKey.create(user: university) }
+      get '/api/v0/subscriptions', headers: headers, params: { uid: headers["uid"] }
     end
 
     it 'returns a 200 response' do
@@ -14,7 +14,7 @@ RSpec.describe 'University Profile Retrieves Reg Keys', type: :request do
     end
 
     it 'returns 5 registration keys' do
-
+      expect(response_json["combination"].count).to eq 5
     end
   end
 end
