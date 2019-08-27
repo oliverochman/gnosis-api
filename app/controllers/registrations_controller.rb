@@ -53,15 +53,14 @@ class RegistrationsController < ::DeviseTokenAuth::RegistrationsController
         })
       end
 
-      render_create_success
-
       if active_for_authentication?
         @token = @resource.create_token
         @resource.save!
         update_auth_header
       end
 
-      
+      render_create_success
+
     else
       clean_up_passwords @resource
       render_create_error
@@ -72,16 +71,16 @@ class RegistrationsController < ::DeviseTokenAuth::RegistrationsController
   private
 
   def render_create_success
-    if current_user.role == 'university'  
-      5.times { RegistrationKey.create(user: current_user) }
-      current_user.reload
+    if @resource.role == 'university'  
+      5.times { RegistrationKey.create(user: @resource) }
+      @resource.reload
     end
     
     render json: {
             status: 'success',
             data:
               resource_data.merge(
-                registration_keys: current_user.registration_keys
+                registration_keys: @resource.registration_keys
               )
           }
   end
