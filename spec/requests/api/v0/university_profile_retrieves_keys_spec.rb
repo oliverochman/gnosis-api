@@ -12,7 +12,6 @@ RSpec.describe 'University Profile Retrieves Reg Keys', type: :request do
 
     it 'returns a 200 response' do
       expect(response.status).to eq 200
-      binding.pry
     end
 
     it 'returns a registration key' do

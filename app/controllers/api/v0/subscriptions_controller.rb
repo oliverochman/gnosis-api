@@ -2,9 +2,8 @@ class Api::V0::SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # User.last.registration_keys.first
-    # registration_keys = RegistrationKeys.find(params[:user_id])
-    @registration_keys = RegistrationKey.all
+    reg_keys = RegistrationKey.find_by(user_id: params[:uid])
+    render json: reg_keys
   end
 
   def create
