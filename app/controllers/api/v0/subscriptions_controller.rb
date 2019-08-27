@@ -3,7 +3,8 @@ class Api::V0::SubscriptionsController < ApplicationController
 
   def index
     # User.last.registration_keys.first
-    registration_keys = RegistrationKeys.find(params[:user_id])
+    # registration_keys = RegistrationKeys.find(params[:user_id])
+    @registration_keys = RegistrationKey.all
   end
 
   def create
@@ -23,6 +24,8 @@ class Api::V0::SubscriptionsController < ApplicationController
           )
   
         if charge.paid?
+          render_create_success
+
           current_user.update_attribute(:subscriber, true)
           current_user.reload
           render json: { message: 'Payment successful' }
@@ -42,6 +45,21 @@ class Api::V0::SubscriptionsController < ApplicationController
   def new; end
 
   private
+
+  def render_create_success
+    if current_user.role == 'university'  
+      5.times { RegistrationKey.create(user: current_user) }
+      current_user.reload
+    end
+    
+    render json: {
+            status: 'success',
+            data:
+              resource_data.merge(
+                registration_keys: current_user.registration_keys
+              )
+          }
+  end
 
   def render_error(message)
     render json: { 

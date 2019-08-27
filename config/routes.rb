@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     namespace :v0 do
       resources :articles, only: [:index, :create]
       resources :subscriptions, only: [:new, :create, :index]
-
     end
   end
   mount_devise_token_auth_for 'User', at: 'api/v0/auth', skip: [:omniauth_callbacks], controllers: {

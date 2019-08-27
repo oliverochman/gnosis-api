@@ -58,8 +58,6 @@ class RegistrationsController < ::DeviseTokenAuth::RegistrationsController
         @resource.save!
         update_auth_header
       end
-
-      render_create_success
       
     else
       clean_up_passwords @resource
@@ -69,21 +67,6 @@ class RegistrationsController < ::DeviseTokenAuth::RegistrationsController
   end
 
   private
-  
-  def render_create_success
-    if @resource.role == 'university'  
-      5.times { RegistrationKey.create(user: @resource) }
-      @resource.reload
-    end
-    
-    render json: {
-            status: 'success',
-            data:
-              resource_data.merge(
-                registration_keys: @resource.registration_keys
-              )
-          }
-  end
 
   def render_json_error_response(message)
     render json: {
