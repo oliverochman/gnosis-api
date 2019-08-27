@@ -14,8 +14,7 @@ RSpec.describe 'University Profile Retrieves Reg Keys', type: :request do
     end
 
     it 'returns 5 registration keys' do
-      # expect(response_json["combination"].count).to eq 5
-      binding.pry
+      expect(response_json.count).to eq 5
     end
   end
 end
