@@ -1,6 +1,10 @@
 class Api::V0::SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    registration_keys = RegistrationKeys.find(params[:user_id])
+  end
+
   def create
     if params[:stripeToken]
       begin
