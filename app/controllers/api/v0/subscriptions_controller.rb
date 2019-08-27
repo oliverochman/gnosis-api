@@ -2,6 +2,7 @@ class Api::V0::SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # User.last.registration_keys.first
     registration_keys = RegistrationKeys.find(params[:user_id])
   end
 
