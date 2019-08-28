@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/show'
   namespace :api do
     namespace :v0 do
       resources :articles, only: [:index, :create]
