@@ -19,17 +19,3 @@ RSpec.describe 'University Profile retrieves research keys', type: :request do
     end
   end
 end
-
-function toArray(ourArray) {
-  const result = [];
-  for (const prop in ourArray) {
-      const value = ourArray[prop];
-      if (typeof value === 'object') {
-          result.push(toArray(value)); // <- recursive call
-      }
-      else {
-          result.push(value);
-      }
-  }
-  return result;
-}
