@@ -6,7 +6,7 @@ RSpec.describe 'University Profile retrieves research keys', type: :request do
   describe 'research keys are returned for subscribed user' do
     before do
       5.times { RegistrationKey.create(user: university) }
-      get "/api/v0/users/#{university.id}", headers: headers, params: { id: university.id }
+      get "/api/v0/users/#{university.id}", headers: headers
     end
 
     it 'returns a 200 response' do
