@@ -15,6 +15,7 @@ RSpec.describe 'University Profile retrieves research keys', type: :request do
     
     it 'returns 5 research keys' do
       expect(response_json.count).to eq 5
+      binding.pry
     end
   end
 end
