@@ -5,6 +5,7 @@ class Api::V0::SubscriptionsController < ApplicationController
     subscribedUni = User.find_by(uid: params[:uid])
     reg_keys = RegistrationKey.where(user_id: subscribedUni.id)
     render json: reg_keys, each_serializer: RegistrationKeysSerializer
+
   end
 
   def create
