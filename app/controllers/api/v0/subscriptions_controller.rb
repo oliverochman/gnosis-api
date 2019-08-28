@@ -1,10 +1,6 @@
 class Api::V0::SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    render json: current_user.registration_keys, each_serializer: RegistrationKeysSerializer
-  end
-
   def create
     if params[:stripeToken]
       begin
