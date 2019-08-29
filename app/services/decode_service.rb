@@ -5,7 +5,7 @@ module DecodeService
     io = StringIO.new
     io.puts(decoded_data)
     io.rewind
-    target.attach(io: io, filename "base.#{pdf[:extension]}")
+    target.attach(io: io, filename: "base.#{pdf[:extension]}")
   end
 
   private
